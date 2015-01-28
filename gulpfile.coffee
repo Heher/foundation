@@ -7,19 +7,18 @@ gulp.task 'watch', ->
   gulp.watch 'views/*.jade',['views']
 
 gulp.task 'express', ->
-  
   express = require 'express'
   app = express()
-
-  app.use(express.static(__dirname + "/www"))
-
+  app.use(express.static(__dirname))
+  app.get '/:id', (req, res) ->
+    res.send req.params.id
   app.listen 4000
 
 gulp.task 'coffee',->
   coffee = require 'gulp-coffee'
   gulp.src 'coffee/*.coffee'
-    .pipe coffee()
-    .pipe gulp.dest 'scripts'
+  .pipe coffee()
+  .pipe gulp.dest 'scripts'
 
 sass = require 'gulp-ruby-sass'
 autoprefixer = require 'gulp-autoprefixer'
