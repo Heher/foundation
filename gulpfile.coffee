@@ -7,14 +7,11 @@ gulp.task 'watch', ->
   gulp.watch 'views/*.jade',['views']
 
 gulp.task 'express', ->
-
+  
   express = require 'express'
   app = express()
 
-  app.set('views', __dirname + '/views')
-  app.set('view engine', 'jade')
-
-  # app.use(__dirname + '/www', express.static(__dirname))
+  app.use(express.static(__dirname + "/www"))
 
   app.listen 4000
 
